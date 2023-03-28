@@ -18,6 +18,12 @@ https://github.com/narfman0/smb3-video-autosplitter/releases
 
 Download the zip and extract to your favorite directory.
 
+We need to update the trigger frame and region. First set show_capture_video=true,
+then run the tool. Take a screen cap of princess peach's letter or similar, then
+crop her face and take note of coordinates and width/height. Replace trigger.png
+in the `data/` directory, and set the `autosplitter_region` equal to the x,y,width,height
+of the cropped image relative to the original image.
+
 License
 -------
 

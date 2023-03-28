@@ -31,7 +31,7 @@ pyinstaller: clean
 		-n smb3_video_autosplitter --uac-admin \
 		app.py
 	cp -r data/ dist/
-	cp config.ini.sample dist/
+	cp config.ini.sample dist/config.ini
 	cp README.* dist/
 	7z a smb3_video_autosplitter.zip dist/*
 	7z rn smb3_video_autosplitter.zip dist smb3_video_autosplitter
