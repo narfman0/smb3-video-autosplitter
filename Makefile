@@ -39,6 +39,9 @@ pyinstaller: clean
 run-main:
 	python -m smb3_video_autosplitter.main
 
+run-test:
+	pytest --cov=smb3_video_autosplitter --cov-report term-missing tests/
+
 release-test: clean
 	python setup.py sdist bdist_wheel
 	twine upload --repository pypitest dist/*
