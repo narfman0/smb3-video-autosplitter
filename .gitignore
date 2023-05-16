@@ -91,7 +91,6 @@ ENV/
 .ropeproject
 
 *.avi
-config.ini
 output/
 .vscode/
 smb3_video_autosplitter.zip
