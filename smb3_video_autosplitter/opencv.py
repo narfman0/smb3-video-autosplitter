@@ -6,7 +6,7 @@ from smb3_video_autosplitter.util import settings
 class OpenCV:
     def __init__(self):
         self.graph = FilterGraph()
-        self.graph.add_video_input_device(settings.get_int("video_capture_source"))
+        self.graph.add_video_input_device(settings.get("video_capture_source"))
         self.graph.add_sample_grabber(self.on_frame_received)
         self.graph.add_null_render()
         self.graph.prepare_preview_graph()
@@ -15,7 +15,7 @@ class OpenCV:
 
     def tick(self):
         self.graph.grab_frame()
-        if settings.get_boolean("show_capture_video") and self.frame is not None:
+        if settings.get("show_capture_video") and self.frame is not None:
             cv2.imshow("capture", self.frame)
             _ = cv2.waitKey(1)
 

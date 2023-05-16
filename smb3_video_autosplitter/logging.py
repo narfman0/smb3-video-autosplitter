@@ -6,8 +6,8 @@ FILE_FORMAT = "[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message
 
 
 def initialize_logging(
-    file_log_level=settings.get("file_log_level", fallback="INFO"),
-    console_log_level=settings.get("console_log_level", fallback="INFO"),
+    file_log_level=settings.get("file_log_level", "INFO"),
+    console_log_level=settings.get("console_log_level", "INFO"),
     filename="smb3_video_autosplitter.log",
 ):
     # set up logging to file

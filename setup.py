@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="smb3-video-autosplitter",
-    version="0.0.1",
+    version="0.0.2",
     description=("Ingest video data to render smb3 eh manip stimuli"),
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -22,6 +22,7 @@ setup(
         "opencv-python",
         "pygrabber",
         "pywin32",
+        "pyyaml",
     ],
     test_suite="tests",
 )

@@ -1,0 +1,7 @@
+video_capture_source: 1
+splits:
+- path: data/trigger1.png
+  x: 565
+  y: 517
+  width: 82
+  height: 109

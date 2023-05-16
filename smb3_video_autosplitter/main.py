@@ -20,7 +20,7 @@ LOGGER = logging.getLogger(__name__)
 def print_camera_info():
     graph = FilterGraph()
     input_devices = graph.get_input_devices()
-    video_capture_source = settings.get_int("video_capture_source")
+    video_capture_source = settings.get("video_capture_source")
     if (
         video_capture_source == None
         or video_capture_source == -1

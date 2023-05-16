@@ -9,7 +9,7 @@ def locate_all_opencv(
     haystackImage,
     limit=10000,
     region=None,  # [x, y, width, height]
-    confidence=float(settings.get("confidence", fallback=0.95)),
+    confidence=float(settings.get("confidence", 0.95)),
 ):
     """
     RGBA images are treated as RBG (ignores alpha channel)

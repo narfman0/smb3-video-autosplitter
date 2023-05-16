@@ -1,7 +1,7 @@
 """
 video based autosplitter for smb3
 """
-
+from dataclasses import dataclass
 import logging
 import time
 
@@ -11,8 +11,8 @@ import win32file, win32pipe
 from smb3_video_autosplitter.util import locate_all_opencv, settings
 
 LOGGER = logging.getLogger(__name__)
-SPLIT_DEDUPE_WAIT_S = settings.get_int("split_dedupe_wait_s", fallback=5.0)
-SPLIT_OFFSET_FRAMES = settings.get_int("split_offset_frames", fallback=40)
+SPLIT_DEDUPE_WAIT_S = settings.get("split_dedupe_wait_s", 5.0)
+SPLIT_OFFSET_FRAMES = settings.get("split_offset_frames", 40)
 SPLIT_OFFSET_S = (SPLIT_OFFSET_FRAMES * 16.64) / 1000
 
 
@@ -20,15 +20,29 @@ class LivesplitConnectFailedException(Exception):
     pass
 
 
+@dataclass
+class Split:
+    image: any
+    region: list[int, int, int, int]
+
+
 class Autosplitter:
     def __init__(self):
-        self.region = settings.get_config_region("autosplitter_region")
-        self.template = cv2.imread(
-            settings.get(
-                "autosplitter_path",
-                fallback="data/trigger.png",
-            )
-        )
+        self.initialize_splits()
+        self.initialize_livesplit()
+        self.earliest_next_trigger_time = 0
+
+    def tick(self, frame):
+        if frame is None or self.earliest_next_trigger_time >= time.time():
+            return
+        for split in self.splits:
+            if list(locate_all_opencv(split.image, frame, region=split.region)):
+                time.sleep(SPLIT_OFFSET_S)
+                self.earliest_next_trigger_time = time.time() + SPLIT_DEDUPE_WAIT_S
+                win32file.WriteFile(self.handle, b"split\r\n")
+                LOGGER.info(f"Livesplit autosplit")
+
+    def initialize_livesplit(self):
         try:
             self.handle = win32file.CreateFile(
                 r"\\.\pipe\LiveSplit",
@@ -46,13 +60,10 @@ class Autosplitter:
         )
         if res == 0:
             print(f"SetNamedPipeHandleState return code: {res}")
-        self.earliest_next_trigger_time = 0
 
-    def tick(self, frame):
-        if frame is None or self.earliest_next_trigger_time >= time.time():
-            return
-        if list(locate_all_opencv(self.template, frame, region=self.region)):
-            time.sleep(SPLIT_OFFSET_S)
-            self.earliest_next_trigger_time = time.time() + SPLIT_DEDUPE_WAIT_S
-            win32file.WriteFile(self.handle, b"split\r\n")
-            LOGGER.info(f"Livesplit autosplit")
+    def initialize_splits(self):
+        self.splits: list[Split] = []
+        for split in settings.get("splits"):
+            image = cv2.imread(split["path"])
+            region = [split["x"], split["y"], split["width"], split["height"]]
+            self.splits.append(Split(image, region))
