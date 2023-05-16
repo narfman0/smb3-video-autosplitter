@@ -22,6 +22,7 @@ class LivesplitConnectFailedException(Exception):
 
 @dataclass
 class Split:
+    path: str
     image: any
     region: list[int, int, int, int]
 
@@ -36,11 +37,14 @@ class Autosplitter:
         if frame is None or self.earliest_next_trigger_time >= time.time():
             return
         for split in self.splits:
-            if list(locate_all_opencv(split.image, frame, region=split.region)):
+            results = list(locate_all_opencv(split.image, frame, region=split.region))
+            if results:
                 time.sleep(SPLIT_OFFSET_S)
                 self.earliest_next_trigger_time = time.time() + SPLIT_DEDUPE_WAIT_S
+                LOGGER.info(
+                    f"Splitting after {split.path} observed {len(results)} times at {list(map(str, results))}"
+                )
                 win32file.WriteFile(self.handle, b"split\r\n")
-                LOGGER.info(f"Livesplit autosplit")
 
     def initialize_livesplit(self):
         try:
@@ -64,6 +68,7 @@ class Autosplitter:
     def initialize_splits(self):
         self.splits: list[Split] = []
         for split in settings.get("splits"):
-            image = cv2.imread(split["path"])
+            path = split["path"]
+            image = cv2.imread(path)
             region = [split["x"], split["y"], split["width"], split["height"]]
-            self.splits.append(Split(image, region))
+            self.splits.append(Split(path, image, region))
