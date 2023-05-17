@@ -12,6 +12,8 @@ Ingest video data from a capture card to autosplit in livesplit
 Installation
 ------------
 
+Make sure livesplit is running whenever you run the app!
+
 Navigate to the most recent versioned release here:
 
 https://github.com/narfman0/smb3-video-autosplitter/releases
