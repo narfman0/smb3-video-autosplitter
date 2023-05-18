@@ -34,7 +34,14 @@ class Autosplitter:
         if frame is None or self.earliest_next_trigger_time >= time.time():
             return
         for split in self.splits:
-            results = list(locate_all_opencv(split.image, frame, region=split.region))
+            results = list(
+                locate_all_opencv(
+                    split.image,
+                    frame,
+                    region=split.region,
+                    confidence=self.settings.confidence,
+                )
+            )
             if results:
                 time.sleep(self.split_offset_s)
                 self.earliest_next_trigger_time = (

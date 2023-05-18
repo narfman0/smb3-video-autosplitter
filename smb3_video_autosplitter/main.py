@@ -8,17 +8,18 @@ from pygrabber.dshow_graph import FilterGraph
 from smb3_video_autosplitter.autosplitter import Autosplitter
 from smb3_video_autosplitter.livesplit import LivesplitConnectFailedException
 from smb3_video_autosplitter.opencv import OpenCV
-from smb3_video_autosplitter.util import settings
+from smb3_video_autosplitter.settings import Settings
 
 from smb3_video_autosplitter.logging import initialize_logging
 
 LOGGER = logging.getLogger(__name__)
+SETTINGS = Settings.load()
 
 
 def print_camera_info():
     graph = FilterGraph()
     input_devices = graph.get_input_devices()
-    video_capture_source = settings.video_capture_source
+    video_capture_source = SETTINGS.video_capture_source
     if (
         video_capture_source == None
         or video_capture_source == -1
@@ -33,11 +34,14 @@ def print_camera_info():
 
 
 def main():
-    initialize_logging()
+    initialize_logging(
+        file_log_level=SETTINGS.file_log_level,
+        console_log_level=SETTINGS.console_log_level,
+    )
     print_camera_info()
-    opencv = OpenCV()
+    opencv = OpenCV(SETTINGS.video_capture_source, SETTINGS.show_capture_video)
     try:
-        autosplitter = Autosplitter(settings)
+        autosplitter = Autosplitter(SETTINGS)
     except LivesplitConnectFailedException:
         LOGGER.warning("Failed to connect to livesplit, is it running?")
         exit()
