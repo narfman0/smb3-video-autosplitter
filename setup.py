@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="smb3-video-autosplitter",
-    version="0.0.5",
+    version="0.1.0",
     description=("Ingest video data to render smb3 eh manip stimuli"),
     classifiers=[
         "Development Status :: 4 - Beta",
