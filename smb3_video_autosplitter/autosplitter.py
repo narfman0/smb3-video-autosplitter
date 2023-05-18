@@ -12,6 +12,7 @@ from smb3_video_autosplitter.settings import Settings
 from smb3_video_autosplitter.util import locate_all_opencv
 
 LOGGER = logging.getLogger(__name__)
+SPLIT_COMMAND_NAME = "startorsplit"
 
 
 @dataclass
@@ -42,7 +43,7 @@ class Autosplitter:
                 LOGGER.info(
                     f"Splitting after {split.path} observed {len(results)} times at {list(map(str, results))}"
                 )
-                self.livesplit.send("split")
+                self.livesplit.send(SPLIT_COMMAND_NAME)
 
     def initialize_splits(self):
         self.splits: list[Split] = []
