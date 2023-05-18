@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="smb3-video-autosplitter",
-    version="0.0.2",
+    version="0.0.3",
     description=("Ingest video data to render smb3 eh manip stimuli"),
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -12,7 +12,7 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
     keywords="smb3-video-autosplitter",
-    author="Jon Robison",
+    author="narfman0",
     author_email="narfman0@blastedstudios.com",
     license="LICENSE",
     packages=find_packages(),
