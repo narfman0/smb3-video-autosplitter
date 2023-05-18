@@ -37,7 +37,7 @@ def main():
     print_camera_info()
     opencv = OpenCV()
     try:
-        autosplitter = Autosplitter()
+        autosplitter = Autosplitter(settings)
     except LivesplitConnectFailedException:
         LOGGER.warning("Failed to connect to livesplit, is it running?")
         exit()

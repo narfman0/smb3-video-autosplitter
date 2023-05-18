@@ -8,11 +8,10 @@ import time
 import cv2
 
 from smb3_video_autosplitter.livesplit import Livesplit
-from smb3_video_autosplitter.settings import settings
+from smb3_video_autosplitter.settings import Settings
 from smb3_video_autosplitter.util import locate_all_opencv
 
 LOGGER = logging.getLogger(__name__)
-SPLIT_OFFSET_S = (settings.split_offset_frames * 16.64) / 1000
 
 
 @dataclass
@@ -23,10 +22,12 @@ class Split:
 
 
 class Autosplitter:
-    def __init__(self):
+    def __init__(self, settings: Settings):
+        self.settings = settings
         self.initialize_splits()
         self.earliest_next_trigger_time = 0
         self.livesplit = Livesplit()
+        self.split_offset_s = (settings.split_offset_frames * 16.64) / 1000
 
     def tick(self, frame):
         if frame is None or self.earliest_next_trigger_time >= time.time():
@@ -34,9 +35,9 @@ class Autosplitter:
         for split in self.splits:
             results = list(locate_all_opencv(split.image, frame, region=split.region))
             if results:
-                time.sleep(SPLIT_OFFSET_S)
+                time.sleep(self.split_offset_s)
                 self.earliest_next_trigger_time = (
-                    time.time() + settings.split_dedupe_wait_s
+                    time.time() + self.settings.split_dedupe_wait_s
                 )
                 LOGGER.info(
                     f"Splitting after {split.path} observed {len(results)} times at {list(map(str, results))}"
@@ -45,7 +46,7 @@ class Autosplitter:
 
     def initialize_splits(self):
         self.splits: list[Split] = []
-        for split in settings.splits:
+        for split in self.settings.splits:
             image = cv2.imread(split.path)
             region = [split.x, split.y, split.width, split.height]
             self.splits.append(Split(split.path, image, region))
