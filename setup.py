@@ -19,6 +19,7 @@ setup(
     include_package_data=True,
     zip_safe=True,
     install_requires=[
+        "dataclass_wizard",
         "opencv-python",
         "pygrabber",
         "pywin32",

@@ -5,7 +5,7 @@ import logging
 
 from pygrabber.dshow_graph import FilterGraph
 
-from smb3_video_autosplitter import settings
+from smb3_video_autosplitter.settings import settings
 from smb3_video_autosplitter.autosplitter import Autosplitter
 from smb3_video_autosplitter.livesplit import LivesplitConnectFailedException
 from smb3_video_autosplitter.opencv import OpenCV
@@ -18,7 +18,7 @@ LOGGER = logging.getLogger(__name__)
 def print_camera_info():
     graph = FilterGraph()
     input_devices = graph.get_input_devices()
-    video_capture_source = settings.get("video_capture_source")
+    video_capture_source = settings.video_capture_source
     if (
         video_capture_source == None
         or video_capture_source == -1

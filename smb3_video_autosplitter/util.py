@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-from smb3_video_autosplitter import settings
+from smb3_video_autosplitter.settings import settings
 
 
 def locate_all_opencv(
@@ -9,7 +9,7 @@ def locate_all_opencv(
     haystackImage,
     limit=10000,
     region=None,  # [x, y, width, height]
-    confidence=float(settings.get("confidence", 0.95)),
+    confidence=settings.confidence,
 ):
     """
     RGBA images are treated as RBG (ignores alpha channel)

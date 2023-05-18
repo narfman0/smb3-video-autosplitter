@@ -1,13 +1,13 @@
 import logging
 
-from smb3_video_autosplitter.util import settings
+from smb3_video_autosplitter.settings import settings
 
 FILE_FORMAT = "[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s"
 
 
 def initialize_logging(
-    file_log_level=settings.get("file_log_level", "INFO"),
-    console_log_level=settings.get("console_log_level", "INFO"),
+    file_log_level=settings.file_log_level,
+    console_log_level=settings.console_log_level,
     filename="smb3_video_autosplitter.log",
 ):
     # set up logging to file
