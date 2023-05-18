@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from functools import lru_cache
 from typing import Optional
 
 from dataclass_wizard import YAMLWizard
@@ -16,6 +15,7 @@ class Split:
     y: int
     width: int
     height: int
+    command_name: str
 
 
 @dataclass

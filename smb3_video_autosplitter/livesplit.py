@@ -41,3 +41,6 @@ class Livesplit:
         )
         if res == 0:
             print(f"SetNamedPipeHandleState return code: {res}")
+
+    def terminate(self):
+        self.handle.close()
