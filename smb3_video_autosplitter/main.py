@@ -5,10 +5,10 @@ import logging
 
 from pygrabber.dshow_graph import FilterGraph
 
-from smb3_video_autosplitter.settings import settings
 from smb3_video_autosplitter.autosplitter import Autosplitter
 from smb3_video_autosplitter.livesplit import LivesplitConnectFailedException
 from smb3_video_autosplitter.opencv import OpenCV
+from smb3_video_autosplitter.util import settings
 
 from smb3_video_autosplitter.logging import initialize_logging
 

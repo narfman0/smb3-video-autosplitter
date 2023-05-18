@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from functools import lru_cache
 from typing import Optional
 
 from dataclass_wizard import YAMLWizard
@@ -31,6 +32,3 @@ class Settings(YAMLWizard):
     @classmethod
     def load(cls, path="config.yml"):
         return Settings.from_yaml_file(path)
-
-
-settings = Settings.load()

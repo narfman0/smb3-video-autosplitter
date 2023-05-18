@@ -1,7 +1,9 @@
 import cv2
 import numpy as np
 
-from smb3_video_autosplitter.settings import settings
+from smb3_video_autosplitter.settings import Settings
+
+settings = Settings.load()
 
 
 def locate_all_opencv(

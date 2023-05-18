@@ -1,6 +1,6 @@
 from pygrabber.dshow_graph import FilterGraph
 import cv2
-from smb3_video_autosplitter.settings import settings
+from smb3_video_autosplitter.util import settings
 
 
 class OpenCV:

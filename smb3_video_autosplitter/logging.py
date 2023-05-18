@@ -1,6 +1,6 @@
 import logging
 
-from smb3_video_autosplitter.settings import settings
+from smb3_video_autosplitter.util import settings
 
 FILE_FORMAT = "[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s"
 
