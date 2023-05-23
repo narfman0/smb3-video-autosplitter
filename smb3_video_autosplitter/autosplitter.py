@@ -21,7 +21,8 @@ class Split:
     image: any
     region: list[int, int, int, int]
     command_name: str
-    split_offset_s: Optional[float]
+    split_offset_s: Optional[float] = 0
+    split_wait_s: Optional[float] = 0
 
 
 class Autosplitter:
@@ -44,19 +45,26 @@ class Autosplitter:
                 )
             )
             if results:
-                sleep_duration = (
-                    split.split_offset_s
-                    if split.split_offset_s
-                    else self.settings.split_offset_s_default
-                )
-                time.sleep(sleep_duration)
-                self.earliest_next_trigger_time = (
-                    time.time() + self.settings.split_dedupe_wait_s
-                )
-                LOGGER.info(
-                    f"Splitting after {split.path} observed {len(results)} times at {list(map(str, results))}"
-                )
-                self.livesplit.send(split.command_name)
+                self.handle_split_image_found(split, results)
+                break
+
+    def handle_split_image_found(self, split: Split, results):
+        sleep_duration = (
+            split.split_offset_s
+            if split.split_offset_s
+            else self.settings.split_offset_s_default
+        )
+        time.sleep(sleep_duration)
+        split_wait_s = (
+            split.split_wait_s
+            if split.split_wait_s
+            else self.settings.split_wait_s_default
+        )
+        self.earliest_next_trigger_time = time.time() + split_wait_s
+        LOGGER.info(
+            f"Splitting after {split.path} observed {len(results)} times at {list(map(str, results))}"
+        )
+        self.livesplit.send(split.command_name)
 
     def initialize_splits(self):
         self.splits: list[Split] = []
@@ -64,6 +72,9 @@ class Autosplitter:
             image = cv2.imread(split.path)
             region = [split.x, split.y, split.width, split.height]
             self.splits.append(Split(split.path, image, region, split.command_name))
+
+    def reset(self):
+        self.initialize_splits()
 
     def terminate(self):
         self.livesplit.terminate()
