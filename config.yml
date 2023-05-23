@@ -1,13 +1,13 @@
 video_capture_source: 1
 show_capture_video: false
 splits:
-- path: data/autosplitter/peachtrigger.png
+- path: data/peachtrigger.png
   x: 565
   y: 517
   width: 82
   height: 109
   command_name: split
-- path: data/autosplitter/w7trigger.png
+- path: data/w7trigger.png
   x: 754
   y: 566
   width: 207
