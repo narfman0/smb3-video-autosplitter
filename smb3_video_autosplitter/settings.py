@@ -27,6 +27,8 @@ class Settings(YAMLWizard):
     file_log_level: Optional[str] = "INFO"
     console_log_level: Optional[str] = "INFO"
     show_capture_video: Optional[bool] = False
+    write_capture_video: Optional[bool] = False
+    sequential: Optional[bool] = False
     confidence: float = 0.95
 
     @classmethod

@@ -35,7 +35,7 @@ class Autosplitter:
     def tick(self, frame):
         if frame is None or self.earliest_next_trigger_time >= time.time():
             return
-        for split in self.splits:
+        for split in self.candidate_splits:
             results = list(
                 locate_all_opencv(
                     split.image,
@@ -45,8 +45,9 @@ class Autosplitter:
                 )
             )
             if results:
+                if self.settings.sequential:
+                    self.splits.pop(0)
                 self.handle_split_image_found(split, results)
-                break
 
     def handle_split_image_found(self, split: Split, results):
         sleep_duration = (
@@ -72,6 +73,12 @@ class Autosplitter:
             image = cv2.imread(split.path)
             region = [split.x, split.y, split.width, split.height]
             self.splits.append(Split(split.path, image, region, split.command_name))
+
+    @property
+    def candidate_splits(self):
+        if self.settings.sequential:
+            return [self.splits[0]]
+        return self.splits
 
     def reset(self):
         self.initialize_splits()

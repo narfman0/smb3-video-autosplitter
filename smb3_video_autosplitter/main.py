@@ -39,7 +39,11 @@ def main():
         console_log_level=SETTINGS.console_log_level,
     )
     print_camera_info()
-    opencv = OpenCV(SETTINGS.video_capture_source, SETTINGS.show_capture_video)
+    opencv = OpenCV(
+        SETTINGS.video_capture_source,
+        SETTINGS.show_capture_video,
+        SETTINGS.write_capture_video,
+    )
     try:
         autosplitter = Autosplitter(SETTINGS)
     except LivesplitConnectFailedException:
