@@ -4,6 +4,7 @@ video based autosplitter for smb3
 from dataclasses import dataclass
 import logging
 import time
+from typing import Optional
 
 import cv2
 
@@ -20,6 +21,7 @@ class Split:
     image: any
     region: list[int, int, int, int]
     command_name: str
+    split_offset_s: Optional[float]
 
 
 class Autosplitter:
@@ -28,7 +30,6 @@ class Autosplitter:
         self.initialize_splits()
         self.earliest_next_trigger_time = 0
         self.livesplit = Livesplit()
-        self.split_offset_s = (settings.split_offset_frames * 16.64) / 1000
 
     def tick(self, frame):
         if frame is None or self.earliest_next_trigger_time >= time.time():
@@ -43,7 +44,12 @@ class Autosplitter:
                 )
             )
             if results:
-                time.sleep(self.split_offset_s)
+                sleep_duration = (
+                    split.split_offset_s
+                    if split.split_offset_s
+                    else self.settings.split_offset_s_default
+                )
+                time.sleep(sleep_duration)
                 self.earliest_next_trigger_time = (
                     time.time() + self.settings.split_dedupe_wait_s
                 )

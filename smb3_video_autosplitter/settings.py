@@ -23,7 +23,7 @@ class Settings(YAMLWizard):
     splits: list[Split]
     video_capture_source: int
     split_dedupe_wait_s: Optional[float] = 5.0
-    split_offset_frames: Optional[float] = 40
+    split_offset_s_default: Optional[float] = 0.65
     file_log_level: Optional[str] = "INFO"
     console_log_level: Optional[str] = "INFO"
     show_capture_video: Optional[bool] = False
