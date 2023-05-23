@@ -5,9 +5,9 @@ sequential: false
 splits:
 - path: data/level_clear.png
   x: 964
-  y: 141
-  width: 286
-  height: 43
+  y: 140
+  width: 296
+  height: 46
   command_name: split
 - path: data/peachtrigger.png
   x: 565

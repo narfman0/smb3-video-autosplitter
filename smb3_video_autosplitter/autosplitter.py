@@ -23,6 +23,7 @@ class Split:
     command_name: str
     split_offset_s: Optional[float] = 0
     split_wait_s: Optional[float] = 0
+    description: Optional[str] = None
 
 
 class Autosplitter:
