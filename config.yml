@@ -1,6 +1,6 @@
 video_capture_source: 1
 show_capture_video: false
-write_capture_video: false
+write_capture_video: true
 sequential: false
 splits:
 - path: data/level_clear.png
@@ -8,23 +8,31 @@ splits:
   y: 140
   width: 180
   height: 46
-  command_name: split
+  command_name: startorsplit
 - path: data/peachtrigger.png
   x: 565
   y: 517
   width: 82
   height: 109
-  command_name: split
+  command_name: startorsplit
 - path: data/w7trigger.png
   x: 754
   y: 566
   width: 207
   height: 38
-  command_name: split
+  command_name: startorsplit
 - path: data/bowser_death.png
   x: 1378
   y: 670
   width: 162
   height: 190
   split_offset_s: 11.614
-  command_name: split
+  command_name: startorsplit
+- path: data/orb.png
+  x: 1103
+  y: 515
+  width: 357
+  height: 57
+  split_offset_s: 6.5
+  command_name: startorsplit
+  
