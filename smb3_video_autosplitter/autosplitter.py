@@ -71,6 +71,8 @@ class Autosplitter:
     def initialize_splits(self):
         self.splits: list[Split] = []
         for split in self.settings.splits:
+            if not split.active:
+                continue
             image = cv2.imread(split.path)
             region = [split.x, split.y, split.width, split.height]
             self.splits.append(Split(split.path, image, region, split.command_name))

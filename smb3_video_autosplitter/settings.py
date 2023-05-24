@@ -16,6 +16,7 @@ class Split:
     width: int
     height: int
     command_name: str
+    active: bool = True
 
 
 @dataclass
