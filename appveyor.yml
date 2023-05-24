@@ -30,7 +30,7 @@ deploy:
     tag: dev
     release: dev
     auth_token:
-      secure: 32wi9EYebbPOK8c8u2acHuSm2Gs/Mhm9nhnUOKmkuh10ftCGcdGu3yTo2PRiuuN/
+      secure: JnxW6rOjz2K6O4QS1mWd1pupudBkX+dLN6/qZbtem+ZR7n3dtbLe4EHnORcUmAZPk/mGSA31YJW+bjoeEG8tuKAtKlBLPwpb3/9umFSm8ORJIFUI1aHj2n+I6KLrXhjs
     artifact: smb3_video_autosplitter.zip
     prerelease: true
     on:
@@ -39,7 +39,7 @@ deploy:
     tag: $(APPVEYOR_REPO_TAG_NAME)
     release: $(APPVEYOR_REPO_TAG_NAME)
     auth_token:
-      secure: 32wi9EYebbPOK8c8u2acHuSm2Gs/Mhm9nhnUOKmkuh10ftCGcdGu3yTo2PRiuuN/
+      secure: JnxW6rOjz2K6O4QS1mWd1pupudBkX+dLN6/qZbtem+ZR7n3dtbLe4EHnORcUmAZPk/mGSA31YJW+bjoeEG8tuKAtKlBLPwpb3/9umFSm8ORJIFUI1aHj2n+I6KLrXhjs
     artifact: smb3_video_autosplitter.zip
     prerelease: true
     on:
