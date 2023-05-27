@@ -65,7 +65,8 @@ class Autosplitter:
         LOGGER.info(
             f"Splitting after {split.path} observed {len(results)} times at {list(map(str, results))}"
         )
-        self.livesplit.send(split.command_name)
+        if split.command_name:
+            self.livesplit.send(split.command_name)
 
     def initialize_splits(self):
         self.splits: list[Split] = []
