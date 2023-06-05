@@ -89,7 +89,7 @@ class Autosplitter:
     @property
     def candidate_splits(self):
         if self.settings.sequential:
-            return [self.splits[0]]
+            return self.splits[:1]
         return self.splits
 
     def reset(self):
