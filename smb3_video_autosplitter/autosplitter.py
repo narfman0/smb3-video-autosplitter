@@ -21,8 +21,8 @@ class Split:
     image: any
     region: list[int, int, int, int]
     command_name: str
-    split_offset_s: Optional[float] = 0
-    split_wait_s: Optional[float] = 0
+    split_offset_s: Optional[float] = None
+    split_wait_s: Optional[float] = None
 
 
 class Autosplitter:
@@ -52,13 +52,13 @@ class Autosplitter:
     def handle_split_image_found(self, split: Split, results):
         sleep_duration = (
             split.split_offset_s
-            if split.split_offset_s
+            if split.split_offset_s is not None
             else self.settings.split_offset_s_default
         )
         time.sleep(sleep_duration)
         split_wait_s = (
             split.split_wait_s
-            if split.split_wait_s
+            if split.split_wait_s is not None
             else self.settings.split_wait_s_default
         )
         self.earliest_next_trigger_time = time.time() + split_wait_s

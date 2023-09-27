@@ -17,8 +17,8 @@ class Split:
     height: int
     command_name: Optional[str] = None
     active: bool = True
-    split_offset_s: Optional[float] = 0
-    split_wait_s: Optional[float] = 0
+    split_offset_s: Optional[float] = None
+    split_wait_s: Optional[float] = None
     description: Optional[str] = None
 
 
