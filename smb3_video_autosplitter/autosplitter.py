@@ -62,11 +62,15 @@ class Autosplitter:
             else self.settings.split_wait_s_default
         )
         self.earliest_next_trigger_time = time.time() + split_wait_s
-        LOGGER.info(
-            f"Splitting after {split.path} observed {len(results)} times at {list(map(str, results))}"
+
+        log_str = (
+            f"{split.path} observed {len(results)} times at {list(map(str, results))}"
         )
         if split.command_name:
+            LOGGER.info(f"Triggering {split.command_name} after {log_str}")
             self.livesplit.send(split.command_name)
+        else:
+            LOGGER.info(log_str)
 
     def initialize_splits(self):
         self.splits: list[Split] = []

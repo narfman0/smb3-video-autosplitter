@@ -15,7 +15,7 @@ class Split:
     y: int
     width: int
     height: int
-    command_name: str = None
+    command_name: Optional[str] = None
     active: bool = True
     split_offset_s: Optional[float] = 0
     split_wait_s: Optional[float] = 0
