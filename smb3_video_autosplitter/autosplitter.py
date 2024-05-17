@@ -1,6 +1,7 @@
 """
 video based autosplitter for smb3
 """
+
 from dataclasses import dataclass
 import logging
 import time
@@ -31,6 +32,11 @@ class Autosplitter:
         self.initialize_splits()
         self.earliest_next_trigger_time = 0
         self.livesplit = Livesplit()
+        if self.settings.sequential:
+            self.reset_splits = []
+            for split in self.splits:
+                if "reset" in split.command_name:
+                    self.reset_splits.append(split)
 
     def tick(self, frame):
         if frame is None or self.earliest_next_trigger_time >= time.time():
@@ -69,6 +75,8 @@ class Autosplitter:
         if split.command_name:
             LOGGER.info(f"Triggering {split.command_name} after {log_str}")
             self.livesplit.send(split.command_name)
+            if "reset" in split.command_name:
+                self.reset()
         else:
             LOGGER.info(log_str)
 
@@ -93,7 +101,7 @@ class Autosplitter:
     @property
     def candidate_splits(self):
         if self.settings.sequential:
-            return self.splits[:1]
+            return self.splits[:1] + self.reset_splits
         return self.splits
 
     def reset(self):
