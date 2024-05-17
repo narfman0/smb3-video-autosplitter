@@ -1,38 +1,73 @@
 video_capture_source: 1
 show_capture_video: false
-write_capture_video: true
-sequential: false
+write_capture_video: false
+sequential: true
 splits:
-- path: data/level_clear.png
+- path: data/autosplitter/level_clear.png
   x: 960
   y: 140
-  width: 180
+  width: 150
   height: 46
-  command_name: startorsplit
-- path: data/peachtrigger.png
-  x: 565
-  y: 517
-  width: 82
-  height: 109
-  command_name: startorsplit
-- path: data/w7trigger.png
-  x: 754
-  y: 566
-  width: 207
-  height: 38
-  command_name: startorsplit
-- path: data/bowser_death.png
-  x: 1378
-  y: 670
-  width: 162
-  height: 190
-  split_offset_s: 11.614
-  command_name: startorsplit
-- path: data/orb.png
-  x: 1103
-  y: 515
-  width: 357
-  height: 57
-  split_offset_s: 6.5
-  command_name: startorsplit
-  
+  command_name: split
+  description: 1-1
+  split_offset_s: 0.65
+- path: data/autosplitter/level_clear.png
+  x: 960
+  y: 140
+  width: 150
+  height: 46
+  command_name: split
+  description: 1-2
+  split_offset_s: 0.65
+- path: data/autosplitter/whistle.png
+  x: 694
+  y: 896
+  width: 37
+  height: 78
+  command_name: split
+  description: 1-3
+  split_offset_s: 3.5
+- path: data/autosplitter/whistle.png
+  x: 694
+  y: 896
+  width: 37
+  height: 78
+  command_name: split
+  description: 1f whistle use
+  split_offset_s: 3.2
+- path: data/autosplitter/twister.png
+  x: 790
+  y: 429
+  width: 80
+  height: 46
+  command_name: split
+  description: warp twister
+  split_offset_s: 0.75
+  active: false
+- path: data/autosplitter/mario_face_front.png
+  x: 1300
+  y: 409
+  width: 130
+  height: 80
+  command_name: split
+  description: 7-1 4c pipe entry
+- path: data/autosplitter/71_pipe_entry.png
+  x: 1450
+  y: 384
+  width: 69
+  height: 84
+  command_name: split
+  description: 7-1 final pipe entry
+- path: data/autosplitter/any_end.png
+  x: 479
+  y: 744
+  width: 66
+  height: 60
+  command_name: split
+  description: end
+- path: data/autosplitter/reset.png
+  x: 300
+  y: 822
+  width: 168
+  height: 86
+  command_name: reset

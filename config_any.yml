@@ -10,6 +10,7 @@ splits:
   height: 46
   command_name: split
   description: 1-1
+  split_offset_s: 0.65
 - path: data/autosplitter/level_clear.png
   x: 960
   y: 140
@@ -17,6 +18,7 @@ splits:
   height: 46
   command_name: split
   description: 1-2
+  split_offset_s: 0.65
 - path: data/autosplitter/whistle.png
   x: 694
   y: 896
@@ -50,10 +52,10 @@ splits:
   command_name: split
   description: 7-1 4c pipe entry
 - path: data/autosplitter/71_pipe_entry.png
-  x: 1453
-  y: 386
-  width: 64
-  height: 81
+  x: 1450
+  y: 384
+  width: 69
+  height: 84
   command_name: split
   description: 7-1 final pipe entry
 - path: data/autosplitter/any_end.png
@@ -63,7 +65,6 @@ splits:
   height: 60
   command_name: split
   description: end
-  split_offset_s: 0.0
 - path: data/autosplitter/reset.png
   x: 300
   y: 822
