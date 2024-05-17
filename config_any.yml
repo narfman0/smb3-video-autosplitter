@@ -1,0 +1,72 @@
+video_capture_source: 1
+show_capture_video: false
+write_capture_video: true
+sequential: true
+splits:
+- path: data/autosplitter/level_clear.png
+  x: 960
+  y: 140
+  width: 150
+  height: 46
+  command_name: split
+  description: 1-1
+- path: data/autosplitter/level_clear.png
+  x: 960
+  y: 140
+  width: 150
+  height: 46
+  command_name: split
+  description: 1-2
+- path: data/autosplitter/whistle.png
+  x: 694
+  y: 896
+  width: 37
+  height: 78
+  command_name: split
+  description: 1-3
+  split_offset_s: 3.5
+- path: data/autosplitter/whistle.png
+  x: 694
+  y: 896
+  width: 37
+  height: 78
+  command_name: split
+  description: 1f whistle use
+  split_offset_s: 3.2
+- path: data/autosplitter/twister.png
+  x: 790
+  y: 429
+  width: 80
+  height: 46
+  command_name: split
+  description: warp twister
+  split_offset_s: 0.75
+  active: false
+- path: data/autosplitter/mario_face_front.png
+  x: 1300
+  y: 409
+  width: 130
+  height: 80
+  command_name: split
+  description: 7-1 4c pipe entry
+- path: data/autosplitter/71_pipe_entry.png
+  x: 1453
+  y: 386
+  width: 64
+  height: 81
+  command_name: split
+  description: 7-1 final pipe entry
+- path: data/autosplitter/any_end.png
+  x: 479
+  y: 744
+  width: 66
+  height: 60
+  command_name: split
+  description: end
+  split_offset_s: 0.0
+- path: data/autosplitter/reset.png
+  x: 300
+  y: 822
+  width: 168
+  height: 86
+  command_name: reset

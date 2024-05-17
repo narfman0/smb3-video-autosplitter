@@ -1,0 +1,153 @@
+video_capture_source: 1
+show_capture_video: false
+write_capture_video: false
+sequential: true
+splits:
+- path: data/autosplitter/peachtrigger.png
+  x: 565
+  y: 517
+  width: 82
+  height: 109
+  command_name: split
+  description: w1 peachs letter
+- path: data/autosplitter/peachtrigger.png
+  x: 565
+  y: 517
+  width: 82
+  height: 109
+  command_name: split
+  description: w2 peachs letter
+- path: data/autosplitter/peachtrigger.png
+  x: 565
+  y: 517
+  width: 82
+  height: 109
+  command_name: split
+  description: w3 peachs letter
+- path: data/autosplitter/peachtrigger.png
+  x: 565
+  y: 517
+  width: 82
+  height: 109
+  command_name: split
+  description: w4 peachs letter
+- path: data/autosplitter/peachtrigger.png
+  x: 565
+  y: 517
+  width: 82
+  height: 109
+  command_name: split
+  description: w5 peachs letter
+- path: data/autosplitter/6f2.png
+  x: 1371
+  y: 400
+  width: 171
+  height: 113
+  description: 6f2 boom boom
+- path: data/autosplitter/level_clear.png
+  x: 960
+  y: 140
+  width: 150
+  height: 46
+  command_name: split
+  description: 6-8
+- path: data/autosplitter/level_clear.png
+  x: 960
+  y: 140
+  width: 150
+  height: 46
+  command_name: split
+  description: 6-9
+- path: data/autosplitter/peachtrigger.png
+  x: 565
+  y: 517
+  width: 82
+  height: 109
+  command_name: split
+  description: w6 peachs letter
+- path: data/autosplitter/level_clear.png
+  x: 960
+  y: 140
+  width: 150
+  height: 46
+  command_name: split
+  description: 7-1
+- path: data/autosplitter/level_clear.png
+  x: 960
+  y: 140
+  width: 150
+  height: 46
+  command_name: split
+  description: 7-2
+- path: data/autosplitter/level_clear.png
+  x: 960
+  y: 140
+  width: 150
+  height: 46
+  command_name: split
+  description: 7-3
+- path: data/autosplitter/level_clear.png
+  x: 960
+  y: 140
+  width: 150
+  height: 46
+  command_name: split
+  description: 7-6
+- path: data/autosplitter/level_clear.png
+  x: 960
+  y: 140
+  width: 150
+  height: 46
+  command_name: split
+  description: 7-8
+- path: data/autosplitter/level_clear.png
+  x: 960
+  y: 140
+  width: 150
+  height: 46
+  command_name: split
+  description: 7-9
+- path: data/autosplitter/7f2boomboom.png
+  x: 1290
+  y: 621
+  width: 245
+  height: 108
+  split_offset_s: 0
+  split_wait_s: 0
+  description: 7F2 boom boom
+- path: data/autosplitter/7f2boomboomdying.png
+  x: 1090
+  y: 600
+  width: 450
+  height: 150
+  command_name: split
+  description: 7F2 end
+  split_offset_s: 7.5
+- path: data/autosplitter/w7trigger.png
+  x: 754
+  y: 566
+  width: 207
+  height: 38
+  command_name: split
+- path: data/autosplitter/level_clear.png
+  x: 960
+  y: 140
+  width: 150
+  height: 46
+  command_name: split
+  description: 8-1
+- path: data/autosplitter/level_clear.png
+  x: 960
+  y: 140
+  width: 150
+  height: 46
+  command_name: split
+  description: 8-2
+- path: data/autosplitter/bc_end.png
+  x: 1457
+  y: 397
+  width: 158
+  height: 65
+  split_offset_s: 0
+  command_name: split
+  description: BC door open frame
